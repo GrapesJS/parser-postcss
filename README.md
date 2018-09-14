@@ -1,4 +1,4 @@
-# GrapesJS Plugin Boilerplate
+# GrapesJS Parser PostCSS
 
 
 <span><a href="https://david-dm.org/artf/grapesjs-plugin-boilerplate#info=devDependencies" title="View the status of this project's development dependencies on DavidDM"><img src="https://img.shields.io/david/dev/artf/grapesjs-plugin-boilerplate.svg" alt="Dev Dependency Status" /></a></span>

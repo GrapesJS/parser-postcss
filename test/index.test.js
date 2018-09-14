@@ -6,7 +6,7 @@ describe('Parser', () => {
     expect(parser(`@font-face {
       font-family: "Glyphicons Halflings";
       src: url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot")
-    }`)).toBe([
+    }`)).toEqual([
       {
         selectors: '',
         atRule: 'font-face',
@@ -22,20 +22,20 @@ describe('Parser', () => {
     expect(parser(`@keyframes keyframe-name {
       from {opacity: 0;}
       to {opacity: 1;}
-    }`)).toBe([
+    }`)).toEqual([
       {
         params: 'keyframe-name',
         selectors: 'from',
         atRule: 'keyframes',
         style: {
-          opacity: 0,
+          opacity: "0",
         },
       }, {
         params: 'keyframe-name',
         selectors: 'to',
         atRule: 'keyframes',
         style: {
-          opacity: 1,
+          opacity: "1",
         },
       }
     ]);
@@ -50,7 +50,7 @@ describe('Parser', () => {
         .class-test {
           color: blue;
         }
-    }`)).toBe([
+    }`)).toEqual([
       {
         params: 'screen and (min-width: 480px)',
         selectors: 'body',
@@ -74,10 +74,10 @@ describe('Parser', () => {
       .class-test {
         font-size: 20px;
       }
-    }`)).toBe([
+    }`)).toEqual([
       {
         params: '(max-width: 500px)',
-        selectors: 'class-test',
+        selectors: '.class-test',
         atRule: 'media',
         style: {
           'font-size': '20px',
@@ -89,7 +89,7 @@ describe('Parser', () => {
   it('returns the correct object of a simple id rule', () => {
     expect(parser(`#main {
         border: 1px solid black;
-    }`)).toBe([
+    }`)).toEqual([
       {
         selectors: '#main',
         style: {
@@ -102,7 +102,7 @@ describe('Parser', () => {
   it('returns the correct object of a simple class rule and important style', () => {
     expect(parser(`.important {
       color: yellow !important;
-    }`)).toBe([
+    }`)).toEqual([
       {
         selectors: '.important',
         style: {
@@ -120,7 +120,7 @@ describe('Parser', () => {
       background-repeat:repeat-y, no-repeat;
       background-size: contain, cover;
       box-shadow: 0 0 5px #9d7aa5, 0 0 10px #e6c3ee;
-    }`)).toBe([
+    }`)).toEqual([
       {
         selectors: '.header-banner, .header-banner2',
         style: {
@@ -138,7 +138,7 @@ describe('Parser', () => {
   it('returns the correct object of a class rule with state', () => {
     expect(parser(`.header-banner:hover {
       color: green;
-    }`)).toBe([
+    }`)).toEqual([
       {
         selectors: '.header-banner:hover',
         style: {
@@ -152,7 +152,7 @@ describe('Parser', () => {
     expect(parser(`:root {
         --some-color: red;
         --some-width: 55px;
-    }`)).toBe([
+    }`)).toEqual([
       {
         selectors: ':root',
         style: {

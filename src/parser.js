@@ -5,7 +5,8 @@ import postcss from 'postcss';
  * @param  {Editor} editor
  * @param  {*} msg
  */
-export const log = (editor, msg) => editor.log(msg, { ns: 'parser-poscss' });
+export const log = (editor, msg) =>
+  editor && editor.log(msg, { ns: 'parser-poscss' });
 
 /**
  * Create rule from node
