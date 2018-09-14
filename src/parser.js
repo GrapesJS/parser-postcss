@@ -1,5 +1,17 @@
 import postcss from 'postcss';
 
+/**
+ * Log stuff
+ * @param  {Editor} editor
+ * @param  {*} msg
+ */
+export const log = (editor, msg) => editor.log(msg, { ns: 'parser-poscss' });
+
+/**
+ * Create rule from node
+ * @param  {Object} node
+ * @return {Object}
+ */
 export const createRule = node => {
   const declarations = node.nodes || [];
   const style = {};
@@ -14,6 +26,12 @@ export const createRule = node => {
   }
 };
 
+/**
+ * Create at rule from node
+ * @param  {Object} node
+ * @param  {Array<Object>} result
+ * @return {Object}
+ */
 export const createAtRule = (node, result) => {
   const { name, params } = node;
   const isNested = ['media', 'keyframes'].indexOf(name) >= 0;
@@ -34,13 +52,12 @@ export const createAtRule = (node, result) => {
   }
 };
 
-export default css => {
+export default (css, editor) => {
   const result = [];
-  console.log('CSS', css);
+  log(editor, ['Input CSS', css]);
 
   const ast = postcss.parse(css);
-
-  console.log('AST', ast);
+  log(editor, ['PostCSS AST', ast]);
 
   ast.nodes.forEach(node => {
     const { type } = node;
@@ -55,7 +72,7 @@ export default css => {
     }
   });
 
-  console.log('result', result);
+  log(editor, ['Output', result]);
 
   return result;
 }
