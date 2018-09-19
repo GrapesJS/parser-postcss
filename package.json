@@ -1,8 +1,8 @@
 {
-  "name": "grapesjs-plugin-boilerplate",
+  "name": "grapesjs-parser-postcss",
   "version": "0.2.1",
-  "description": "GrapesJS Plugin Boilerplate",
-  "main": "dist/YOUR-PLUGIN-NAME.min.js",
+  "description": "Custom CSS parser via PostCSS for GrapesJS",
+  "main": "dist/grapesjs-parser-postcss.min.js",
   "scripts": {
     "lint": "eslint src",
     "test": "jest",
@@ -17,7 +17,9 @@
   "keywords": [
     "grapesjs",
     "plugin",
-    "boilerplate",
+    "parser",
+    "css",
+    "postcss",
     "wysiwyg"
   ],
   "author": "Artur Arseniev",
