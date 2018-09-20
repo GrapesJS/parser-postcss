@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>GrapesJS Plugin Boilerplate</title>
+    <title>GrapesJS Parser PostCSS</title>
     <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
     <script src="https://unpkg.com/grapesjs"></script>
-    <script src="dist/grapesjs-plugin-boilerplate.min.js"></script>
+    <script src="dist/grapesjs-parser-postcss.min.js"></script>
     <style>
       body,
       html {
@@ -20,7 +20,92 @@
       <div style="margin:100px 100px 25px; padding:25px; font:caption">
         This is a demo content from index.html. For the development, you shouldn't edit this file, instead you can
         copy and rename it to _index.html, on next server start the new file will be served, and it will be ignored by git.
+
+        <div class="header-banner">
+          1. Hello world!
+        </div>
+
+        <div class="class-test">
+          2. Hello world!
+        </div>
+
+        <div class="header-banner important">
+          3. Hello world!
+        </div>
       </div>
+
+      <style>
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 100;
+          src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v18/KFOkCnqEu92Fr1MmgVxFIzIXKMnyrYk.woff2) format('woff2');
+        }
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 300;
+          src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fCRc4AMP6lbBP.woff2) format('woff2');
+        }
+
+        @keyframes name {
+          from {opacity: 0;}
+          to {opacity: 1;}
+        }
+
+        @keyframes name2 {
+          0% {opacity: 0;}
+          50% {opacity: 0.3;}
+          100% {opacity: 1;}
+        }
+
+        @media screen and (min-width: 480px) {
+            .class-test2 {
+                background-color: lightgreen;
+            }
+
+            .class-test {
+              color: blue;
+            }
+        }
+
+        @media (max-width: 500px) {
+          .class-test {
+            font-size: 20px;
+          }
+        }
+
+        #main {
+            border: 1px solid black;
+        }
+
+        .important {
+          color: yellow !important;
+        }
+
+        .header-banner, .header-banner2 {
+          padding-top: 35px;
+          padding-bottom: 100px;
+          color: red;
+          font-family: Helvetica, serif;
+          font-weight: 100;
+          background-image:url("http://grapesjs.com/img/bg-gr-v.png"), url("http://grapesjs.com/img/work-desk.jpg");
+          background-attachment: fixed, scroll;
+          background-position:left top, center center;
+          background-repeat:repeat-y, no-repeat;
+          background-size: contain, cover;
+          box-shadow: 0 0 5px #9d7aa5, 0 0 10px #e6c3ee;
+        }
+
+        .header-banner:hover {
+          color: green;
+        }
+
+        :root {
+            --some-color: red;
+            --some-width: 55px;
+        }
+      </style>
     </div>
 
 
@@ -33,10 +118,10 @@
         container: '#gjs',
         fromElement: true,
 
-        plugins: ['grapesjs-plugin-boilerplate'],
-        pluginsOpts: {
-          'grapesjs-plugin-boilerplate': { some: 'value' }
-        }
+        plugins: [
+          editor => editor.on('log-parser-poscss', console.log),
+          'grapesjs-parser-postcss'
+        ],
       });
       window.editor = editor;
     </script>
