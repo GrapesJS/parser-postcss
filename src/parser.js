@@ -17,9 +17,27 @@ export const createRule = node => {
   const declarations = node.nodes || [];
   const style = {};
 
-  declarations.forEach(({ prop, value, important }) => {
-    style[prop] = value + (important ? ' !important' : '');
-  });
+  if (declarations.length > 0) {
+    declarations.forEach(({prop, value, important}) => {
+      style[prop] = value + (important ? ' !important' : '');
+    });
+  }
+
+  return {
+    selectors: (node.parent.type == 'atrule' && node.type == 'atrule' ? '@' + node.name : node.selector)  || '',
+    style,
+  }
+};
+
+/**
+ * Add declaration to existing rule
+ * @param  {Object} node
+ * @return {Object}
+ */
+export const addDeclaration = (node, style) => {
+  let {prop, value, important} = node;
+
+  style[prop] = value + (important ? ' !important' : '');
 
   return {
     selectors: node.selector || '',
@@ -34,16 +52,31 @@ export const createRule = node => {
  * @return {Object}
  */
 export const createAtRule = (node, result) => {
-  const { name, params } = node;
-  const isNested = ['media', 'keyframes'].indexOf(name) >= 0;
+  let { name, params } = node;
+  const isNested = ['media', 'page', 'keyframes'].indexOf(name) >= 0;
 
   if (isNested) {
-    node.nodes.forEach(node => {
-      result.push({
-        ...createRule(node),
-        atRule: name,
-        params,
-      })
+    const style = {};
+    let ruleCreated = false;
+    node.nodes.forEach(cnode => {
+        if (cnode.type == 'decl') {
+          addDeclaration(cnode, style);
+          if (!ruleCreated) {
+            result.push({
+              selectors: '',
+              style,
+              atRule: name,
+              params,
+            });
+            ruleCreated = true;
+          }
+        } else {
+          result.push({
+            ...createRule(cnode),
+            atRule: name,
+            params,
+          })
+        }
     });
   } else {
     result.push({
