@@ -57,7 +57,7 @@ export default (css, editor) => {
   const result = [];
   log(editor, ['Input CSS', css]);
 
-  const ast = postcss.parse(css);
+  const ast = postcss().process(css).sync().root;
   log(editor, ['PostCSS AST', ast]);
 
   ast.nodes.forEach(node => {
