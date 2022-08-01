@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-parser-postcss",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Custom CSS parser via PostCSS for GrapesJS",
   "main": "dist/grapesjs-parser-postcss.min.js",
   "scripts": {
@@ -45,6 +45,6 @@
     "webpack-dev-server": "^3.1.8"
   },
   "dependencies": {
-    "postcss": "^7.0.2"
+    "postcss": "^8.4.13"
   }
 }
