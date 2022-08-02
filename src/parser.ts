@@ -1,11 +1,21 @@
-import postcss from 'postcss';
+import type grapesjs from 'grapesjs';
+import postcss, { Rule, AtRule, Declaration } from 'postcss';
+
+export type ParsedRule = {
+  selectors: string;
+  style: Record<string, string>;
+  atRule?: string;
+  params?: string;
+}
+
+type Editor = grapesjs.Editor;
 
 /**
  * Log stuff
  * @param  {Editor} editor
  * @param  {*} msg
  */
-export const log = (editor, msg) =>
+export const log = (editor: Editor, msg: any) =>
   editor && editor.log(msg, { ns: 'parser-poscss' });
 
 /**
@@ -13,9 +23,9 @@ export const log = (editor, msg) =>
  * @param  {Object} node
  * @return {Object}
  */
-export const createRule = node => {
-  const declarations = node.nodes || [];
-  const style = {};
+export const createRule = (node: Rule): ParsedRule => {
+  const declarations = (node.nodes as Declaration[]) || [];
+  const style: Record<string, string> = {};
 
   declarations.forEach(({ prop, value, important }) => {
     style[prop] = value + (important ? ' !important' : '');
@@ -33,28 +43,29 @@ export const createRule = node => {
  * @param  {Array<Object>} result
  * @return {Object}
  */
-export const createAtRule = (node, result) => {
+export const createAtRule = (node: AtRule, result: ParsedRule[]) => {
   const { name, params } = node;
   const isNested = ['media', 'keyframes'].indexOf(name) >= 0;
 
   if (isNested) {
     node.nodes.forEach(node => {
       result.push({
-        ...createRule(node),
+        ...createRule(node as Rule),
         atRule: name,
         params,
       })
     });
   } else {
     result.push({
-      ...createRule(node),
+      // @ts-ignore
+      ...createRule(node as Rule),
       atRule: name,
     })
   }
 };
 
-export default (css, editor) => {
-  const result = [];
+export default (css: string, editor: Editor) => {
+  const result: ParsedRule[] = [];
   log(editor, ['Input CSS', css]);
 
   const ast = postcss().process(css).sync().root;

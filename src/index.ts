@@ -1,5 +1,8 @@
+import type grapesjs from 'grapesjs';
 import parser from './parser';
 
-export default (editor) => {
+const plugin: grapesjs.Plugin = (editor) => {
   editor.setCustomParserCss(parser);
 };
+
+export default plugin;

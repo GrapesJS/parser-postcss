@@ -37,6 +37,7 @@
   "devDependencies": {
     "@babel/preset-typescript": "^7.18.6",
     "eslint": "^8.21.0",
+    "grapesjs": "^0.19.5",
     "grapesjs-cli": "^3.0.1",
     "jest": "^28.1.3"
   },
