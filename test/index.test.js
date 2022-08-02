@@ -86,6 +86,121 @@ describe('Parser', () => {
     ]);
   });
 
+  it('returns the correct object of a simple @page rule', () => {
+    expect(parser(`@page Normal {
+                size: 21.0cm 29.7cm;
+                margin: 2.5cm;
+      }`)).toEqual([
+      {
+        params: 'Normal',
+        selectors: '',
+        atRule: 'page',
+        style: {
+          size: '21.0cm 29.7cm',
+          margin: '2.5cm',
+        },
+      },
+    ]);
+  });
+
+  it('returns the correct object of a @page rule', () => {
+    expect(parser(`@page Normal {
+                size: 21.0cm 29.7cm;
+                margin: 2.5cm;
+                @top-left-corner {
+                  content: "@top-left-corner";
+                  background-color: red;
+                  padding: 10px;
+                  border: 1px solid black; 
+                }
+      }`)).toEqual([
+      {
+        params: 'Normal',
+        selectors: '',
+        atRule: 'page',
+        style: {
+          size: '21.0cm 29.7cm',
+          margin: '2.5cm',
+        },
+      }, {
+        params: 'Normal',
+        selectors: '@top-left-corner',
+        atRule: 'page',
+        style: {
+          content: '"@top-left-corner"',
+          'background-color': "red",
+          padding: "10px",
+          border: "1px solid black",
+        },
+      }
+    ]);
+  });
+
+  it('returns the correct object of a @page rule', () => {
+    expect(parser(`@page Normal {
+                size: 21.0cm 29.7cm;
+                margin: 2.5cm;
+                @top-left {
+                  content: "@top-left";
+                  background-color: orange;
+                  padding: 10px;
+                  border: 2px solid blue; 
+                }
+                @top-center {
+                  content: "@top-center";
+                  background-color: yellow;
+                  padding: 10px;
+                  border: 3px solid green; 
+                }
+                @top-right {
+                  content: "@top-right";
+                  background-color: deeppink;
+                  padding: 10px;
+                  border: 1px solid magenta; 
+                }
+      }`)).toEqual([
+      {
+        params: 'Normal',
+        selectors: '',
+        atRule: 'page',
+        style: {
+          size: '21.0cm 29.7cm',
+          margin: '2.5cm',
+        },
+      }, {
+        params: 'Normal',
+        selectors: '@top-left',
+        atRule: 'page',
+        style: {
+          content: '"@top-left"',
+          'background-color': "orange",
+          padding: "10px",
+          border: "2px solid blue",
+        },
+      }, {
+        params: 'Normal',
+        selectors: '@top-center',
+        atRule: 'page',
+        style: {
+          content: '"@top-center"',
+          'background-color': "yellow",
+          padding: "10px",
+          border: "3px solid green",
+        },
+      }, {
+        params: 'Normal',
+        selectors: '@top-right',
+        atRule: 'page',
+        style: {
+          content: '"@top-right"',
+          'background-color': "deeppink",
+          padding: "10px",
+          border: "1px solid magenta",
+        },
+      }
+    ]);
+  });
+
   it('returns the correct object of a simple id rule', () => {
     expect(parser(`#main {
         border: 1px solid black;
