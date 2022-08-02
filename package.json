@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Custom CSS parser via PostCSS for GrapesJS",
   "main": "dist/index.js",
+  "files": ["dist/*"],
   "scripts": {
     "lint": "eslint src",
     "test": "jest",
