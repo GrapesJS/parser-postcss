@@ -1,14 +1,15 @@
 {
   "name": "grapesjs-parser-postcss",
-  "version": "0.2.1",
+  "version": "1.0.1",
   "description": "Custom CSS parser via PostCSS for GrapesJS",
-  "main": "dist/grapesjs-parser-postcss.min.js",
+  "main": "dist/index.js",
+  "files": ["dist/*"],
   "scripts": {
     "lint": "eslint src",
     "test": "jest",
-    "v:patch": "npm version --no-git-tag-version patch",
-    "build": "npm test && npm run v:patch && webpack --env.production",
-    "start": "webpack-dev-server --open --progress --colors"
+    "patch": "npm version patch -m 'Bump v%s'",
+    "start": "grapesjs-cli serve",
+    "build": "npm run test && grapesjs-cli build"
   },
   "repository": {
     "type": "git",
@@ -22,29 +23,24 @@
     "postcss",
     "wysiwyg"
   ],
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-typescript"
+        ]
+      }
+    }
+  },
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
-  "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^5.5.0",
-    "html-webpack-plugin": "^3.2.0",
-    "jest": "^23.6.0",
-    "webpack": "^4.18.0",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8"
-  },
-  "dependencies": {
-    "postcss": "^8.4.13"
+    "@babel/preset-typescript": "^7.18.6",
+    "eslint": "^8.21.0",
+    "grapesjs": "^0.19.5",
+    "grapesjs-cli": "^3.0.1",
+    "jest": "^28.1.3",
+    "postcss": "^8.4.14"
   }
 }
