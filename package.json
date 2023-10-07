@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-parser-postcss",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Custom CSS parser via PostCSS for GrapesJS",
   "main": "dist/index.js",
   "files": [
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/artf/grapesjs-parser-postcss.git"
+    "url": "https://github.com/GrapesJS/parser-postcss.git"
   },
   "keywords": [
     "grapesjs",
