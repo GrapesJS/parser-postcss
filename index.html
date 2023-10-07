@@ -109,13 +109,13 @@
 
 
     <script type="text/javascript">
-      setTimeout(() => {
-        var editor = grapesjs.init({
+      window.onload = () => {
+        window.editor = grapesjs.init({
           height: '100%',
+          container: '#gjs',
           showOffsets: true,
           noticeOnUnload: false,
-          storageManager: { autoload: false },
-          container: '#gjs',
+          storageManager: false,
           fromElement: true,
 
           plugins: [
@@ -123,8 +123,7 @@
             'grapesjs-parser-postcss'
           ],
         });
-        window.editor = editor;
-      });
+      };
     </script>
   </body>
 </html>
