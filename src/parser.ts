@@ -1,4 +1,4 @@
-import { Editor } from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import postcss, { Rule, AtRule, Declaration } from 'postcss';
 
 export type ParsedRule = {

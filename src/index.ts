@@ -1,4 +1,4 @@
-import { Plugin } from 'grapesjs';
+import type { Plugin } from 'grapesjs';
 import parser from './parser';
 
 const plugin: Plugin = (editor) => {
