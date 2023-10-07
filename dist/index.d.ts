@@ -1,6 +1,6 @@
-import grapesjs from 'grapesjs';
+import { Plugin } from 'grapesjs';
 
-declare const plugin: grapesjs.Plugin;
+declare const plugin: Plugin;
 
 export {
 	plugin as default,

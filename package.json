@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-parser-postcss",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Custom CSS parser via PostCSS for GrapesJS",
   "main": "dist/index.js",
   "files": ["dist/*"],
