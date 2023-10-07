@@ -1,6 +1,6 @@
 # GrapesJS Parser PostCSS
 
-This plugin enables custom CSS parser via [PostCSS](https://github.com/postcss/postcss). If you import templates from HTML/CSS or embed custom codes (eg. by using [grapesjs-custom-code](https://github.com/artf/grapesjs-custom-code) plugin) you definitely need to use this one to avoid issues with styles, [check here why](http://grapesjs.com/docs/guides/Custom-CSS-parser.html#cssom-results-are-inconsistent).
+This plugin enables custom CSS parser via [PostCSS](https://github.com/postcss/postcss). If you import templates from HTML/CSS or embed custom codes (eg. by using [grapesjs-custom-code](https://github.com/GrapesJS/components-custom-code) plugin) you definitely need to use this one to avoid issues with styles, [check here why](http://grapesjs.com/docs/guides/Custom-CSS-parser.html#cssom-results-are-inconsistent).
 
 > Requires GrapesJS v0.14.33 or higher
 
@@ -31,7 +31,7 @@ This plugin has no options
 * NPM
   * `npm i grapesjs-parser-postcss`
 * GIT
-  * `git clone https://github.com/artf/grapesjs-parser-postcss.git`
+  * `git clone https://github.com/GrapesJS/parser-postcss.git`
 
 
 
@@ -77,7 +77,7 @@ const editor = grapesjs.init({
 Clone the repository
 
 ```sh
-$ git clone https://github.com/artf/grapesjs-parser-postcss.git
+$ git clone https://github.com/GrapesJS/parser-postcss.git
 $ cd grapesjs-parser-postcss
 ```
 
