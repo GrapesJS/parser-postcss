@@ -13,7 +13,7 @@ export type ParsedRule = {
  * @param  {Editor} editor
  * @param  {*} msg
  */
-export const log = (editor: Editor, msg: any) =>
+export const log = (editor?: Editor, msg?: any) =>
   editor && editor.log(msg, { ns: 'parser-poscss' });
 
 /**
@@ -62,7 +62,7 @@ export const createAtRule = (node: AtRule, result: ParsedRule[]) => {
   }
 };
 
-export default (css: string, editor: Editor) => {
+export default (css: string, editor?: Editor) => {
   const result: ParsedRule[] = [];
   log(editor, ['Input CSS', css]);
 
